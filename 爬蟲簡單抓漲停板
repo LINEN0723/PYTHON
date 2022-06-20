@@ -1,0 +1,19 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+driver = webdriver.Chrome()
+driver.get("https://goodinfo.tw/tw/StockList.asp?MARKET_CAT=%E6%99%BA%E6%85%A7%E9%81%B8%E8%82%A1&INDUSTRY_CAT=%E6%BC%B2%E5%81%9C%E8%82%A1")
+titles = driver.find_elements_by_class_name("link_black")
+for title in titles:
+    print("漲停板")
+    print(title.text)
+time.sleep(1)    
+driver.get("https://goodinfo.tw/tw/StockList.asp?MARKET_CAT=%E6%99%BA%E6%85%A7%E9%81%B8%E8%82%A1&INDUSTRY_CAT=%E8%B7%8C%E5%81%9C%E8%82%A1")
+titles = driver.find_elements_by_class_name("link_black")
+for title in titles:
+    print("跌停板")
+    print(title.text)
+driver.quit()
