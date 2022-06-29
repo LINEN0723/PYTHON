@@ -1,0 +1,15 @@
+
+import pandas as pd
+from pandas import ExcelWriter
+
+import yfinance as yf
+yf.pdr_override() # <== that's all it takes :-)
+
+# download dataframe
+data = yf.download("SPY", start="2017-01-01", end="2017-04-30")
+tsla = yf.download("tsla", start="2017-01-01", end="2017-04-30")
+writer=pd.ExcelWriter('stock.xlsx')
+data.to_excel(writer, sheet_name='sheet1')
+tsla.to_excel(writer, sheet_name='sheet2')
+writer.save()
+writer.close()
